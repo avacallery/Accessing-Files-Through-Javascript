@@ -63,6 +63,9 @@ fileFoo.readFile('load_salaries.txt', 'utf8', function(error, data){
 
     for (var s = 0; s < splitEmployeeSalaries.length; s++) {
         employeeSalaries.push(splitEmployeeSalaries[s].split(",")); 
+        for (var m = 0; m < splitEmployeeSalaries[s].length; m++) {
+            console.log(employeeSalaries[s][1]);
+        }
     }
-    console.log(employeeSalaries);
+    //console.log(employeeSalaries);
 }); 
