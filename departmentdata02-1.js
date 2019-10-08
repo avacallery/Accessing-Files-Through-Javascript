@@ -1,8 +1,10 @@
 var fileFoo = require('fs');
+
+var data = fileFoo.readFileSync('load_dept_names.txt', 'utf8');
 //1. load_dept_names.txt
 
-fileFoo.readFile('load_dept_names.txt', 'utf8', function(error, data) {
-    if (error) throw(error); 
+//fileFoo.readFile('load_dept_names.txt', 'utf8', function(error, data) {
+    //if (error) throw (error); 
     data = data.replace(/\(|\),|\'|\);/g, ""); 
     //REGULAR EXPRESSION 
 //the backslashes are a form of quotation, | works as or 
@@ -15,14 +17,11 @@ fileFoo.readFile('load_dept_names.txt', 'utf8', function(error, data) {
     for (var i = 0; i < deptArray.length; i++) {
         departmentNames.push(deptArray[i].split(","));
     }
-    console.log(departmentNames)
-    }
- );
+    console.log(departmentNames);
 
-fileFoo.readFile('load_dept_emp.txt', 'utf8', function (error, data) {
-    if (error) throw (error);
+    var employeeData = fileFoo.readFileSync('load_dept_emp.txt', 'utf8');
 
-    var tempDepartmentEmployees = data.replace(/\(|\'\),|\;/g, "");
+    var tempDepartmentEmployees = employeeData.replace(/\(|\'\),|\;/g, "");
 
     tempDepartmentEmployees = tempDepartmentEmployees.replace(/'/g, "");
     tempDepartmentEmployees = tempDepartmentEmployees.replace("INSERT INTO `dept_emp` VALUES ", "");
@@ -46,20 +45,17 @@ fileFoo.readFile('load_dept_emp.txt', 'utf8', function (error, data) {
             departmentEmployees.push(tempDepartmentEmployees[i].split(","));
         }
     }
-
-    setTimeout( function() {
-        
-        console.log(departmentEmployees)}, 2000);
+ 
+        console.log(departmentEmployees);
         
         var departmentEmployeesArray = [];
 
-
-
     for (var i = 0; i < departmentEmployees.length; i++) {
         //console.log(departmentEmployees[i][1])
-    }
+    };
+
+
     //console.log(departmentEmployees);
-});
 
 //From there, the splice method is used, and the code will remove any string component from the array that is blank. Once the item is removed, the remaining elements will shift sequentially by -1. 
 //
